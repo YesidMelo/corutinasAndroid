@@ -1,5 +1,7 @@
 package com.mitiempo.aprendizajecorutinas
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,5 +15,11 @@ class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
+    }
+
+    //ensayo de corutinas con test y runblocking funciona bien
+    @Test
+    fun tmpRunBlocking() = runBlocking{
+        delay(5_000)
     }
 }

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //blockingExample()
+        suspendExample()
 
 
     }
@@ -29,12 +31,24 @@ class MainActivity : AppCompatActivity() {
         Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
     }
     //endregion
+
+
     //region ejemplo de suspend
     suspend fun delayCorutine(mensaje : String){
         delay(timeMillis = 4_000)
         Log.e("Mensaje" , mensaje + " " +Thread.currentThread().name)
     }
-
-
+    //endregion
+    //region runBlocking
+    /**
+     * runBlocking ejecuta el codigo en el hilo en el que nos encontramos
+     */
+    fun suspendExample(){
+        Log.e("Mensaje", "Tarea 1" +" " +Thread.currentThread().name)
+        runBlocking {
+            delayCorutine("Tarea 2")
+        }
+        Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
+    }
     //endregion
 }
