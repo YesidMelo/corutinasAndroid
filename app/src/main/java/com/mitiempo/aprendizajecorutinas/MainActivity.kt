@@ -13,7 +13,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //blockingExample()
-        suspendExample()
+        //suspendExample()
+        suspendExample2()
 
 
     }
@@ -48,6 +49,12 @@ class MainActivity : AppCompatActivity() {
         runBlocking {
             delayCorutine("Tarea 2")
         }
+        Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
+    }
+
+    fun suspendExample2() = runBlocking{
+        Log.e("Mensaje", "Tarea 1" +" " +Thread.currentThread().name)
+        delayCorutine("Tarea 2")
         Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
     }
     //endregion
