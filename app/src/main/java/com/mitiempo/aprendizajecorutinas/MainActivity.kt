@@ -11,7 +11,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        blockingExample()
+        //blockingExample()
+
 
     }
 
@@ -28,5 +29,12 @@ class MainActivity : AppCompatActivity() {
         Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
     }
     //endregion
+    //region ejemplo de suspend
+    suspend fun delayCorutine(mensaje : String){
+        delay(timeMillis = 4_000)
+        Log.e("Mensaje" , mensaje + " " +Thread.currentThread().name)
+    }
 
+
+    //endregion
 }
