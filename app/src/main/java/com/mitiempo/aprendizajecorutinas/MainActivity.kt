@@ -6,6 +6,9 @@ import android.util.Log
 import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
+    fun String.imprimirEnConsola(){
+        Log.e("Mensaje",this);
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         //suspendExample2()
         //dispatcher()
         //launch()
-        exampleJob()
+        //exampleJob()
+        asyncAndAwait()
 
 
     }
@@ -104,6 +108,20 @@ class MainActivity : AppCompatActivity() {
         job.cancel()
     }
     //endregion
+    //region async
+    suspend fun calculateHard() : Int{
+        delay(2_000)
+        return 15
+    }
 
+    fun asyncAndAwait()= runBlocking {
+        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+        val numero1 = async { calculateHard() }.await()
+        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+        val numero2 = async { calculateHard() }.await()
+        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+        (numero1 + numero2).toString().imprimirEnConsola()
+    }
+    //endregion
 
 }
