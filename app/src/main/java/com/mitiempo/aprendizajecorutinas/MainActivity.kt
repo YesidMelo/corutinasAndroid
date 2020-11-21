@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
         //exampleJob()
         //asyncAndAwait()
         //asyncAndAwaitDeferred()
-        "tiempo que demoro la operacion : ${measureTime { asyncAndAwait() }}".imprimirEnConsola()
-        "tiempo que demoro la operacion : ${measureTime { asyncAndAwaitDeferred() }}".imprimirEnConsola()
-        "tiempo que demoro la operacion : ${measureTime { withContextIO() }}".imprimirEnConsola()
-
+//        "tiempo que demoro la operacion : ${measureTime { asyncAndAwait() }}".imprimirEnConsola()
+//        "tiempo que demoro la operacion : ${measureTime { asyncAndAwaitDeferred() }}".imprimirEnConsola()
+//        "tiempo que demoro la operacion : ${measureTime { withContextIO() }}".imprimirEnConsola()
+        cancelCorutine()
     }
 
     //region bloqueo
@@ -150,6 +150,24 @@ class MainActivity : AppCompatActivity() {
         val numero1 = withContext(Dispatchers.IO){ calculateHard() }
         val numero2 = withContext(Dispatchers.IO){ calculateHard() }
         "resultado (withContextIO) : ${numero1 + numero2}".imprimirEnConsola()
+    }
+    //endregion
+    //region CancelCorutine
+    fun cancelCorutine(){
+        runBlocking {
+            val job : Job = launch {
+                repeat(1_000){
+                    i ->
+                    "job : $i".imprimirEnConsola()
+                    delay(500)
+                }
+            }
+
+            delay(1_400)
+            "main : cansado de esperar".imprimirEnConsola()
+            job.cancel()
+
+        }
     }
     //endregion
 
