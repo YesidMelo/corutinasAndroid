@@ -3,10 +3,7 @@ package com.mitiempo.aprendizajecorutinas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.newSingleThreadContext
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,7 +14,9 @@ class MainActivity : AppCompatActivity() {
         //blockingExample()
         //suspendExample()
         //suspendExample2()
-        dispatcher()
+        //dispatcher()
+        //launch()
+        exampleJob()
 
 
     }
@@ -78,4 +77,33 @@ class MainActivity : AppCompatActivity() {
         runBlocking(Dispatchers.Main){ Log.e("Mensaje","Hilo en el que se ejecuta 5: ${Thread.currentThread().name}") }
     }
     //endregion
+    //region launch
+    fun launch(){
+        Log.e("Mensaje", "Tarea 1" +" " +Thread.currentThread().name)
+        GlobalScope.launch {
+            delayCorutine("Tarea 2")
+        }
+        Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
+
+    }
+    //endregion
+    /*
+        CorutineScope: nos ayuda a definir el ciclo de vida de las corutinas
+        GlobalScope : Asociado a la vida util de la aplicacion
+        Job: elemento cancelable cuyo ciclo de vida que culmina a su finalizacion. El job no produce un valor como resultado
+     */
+
+    //region job
+    fun exampleJob(){
+        Log.e("Mensaje", "Tarea 1" +" " +Thread.currentThread().name)
+        val job = GlobalScope.launch {
+            delayCorutine("Tarea 2")
+        }
+        Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
+
+        job.cancel()
+    }
+    //endregion
+
+
 }
