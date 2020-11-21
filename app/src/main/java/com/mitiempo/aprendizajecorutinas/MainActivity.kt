@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         //dispatcher()
         //launch()
         //exampleJob()
-        asyncAndAwait()
+        //asyncAndAwait()
+        asyncAndAwaitDeferred()
 
 
     }
@@ -108,6 +109,9 @@ class MainActivity : AppCompatActivity() {
         job.cancel()
     }
     //endregion
+    /*
+        async : devuelve uyn deferred
+     */
     //region async
     suspend fun calculateHard() : Int{
         delay(2_000)
@@ -122,6 +126,22 @@ class MainActivity : AppCompatActivity() {
         " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         (numero1 + numero2).toString().imprimirEnConsola()
     }
+    //endregion
+    /*
+        deferred: nos de vuelve un futuro cancelable
+     */
+    //region defered -> esta operacion esta ejecutando en paralelo
+    fun asyncAndAwaitDeferred()= runBlocking {
+        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+        val numero1: Deferred<Int> = async { calculateHard() }
+        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+        val numero2: Deferred<Int> = async { calculateHard() }
+        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+        "Resultado : ${numero1.await() + numero2.await()}".imprimirEnConsola()
+    }
+    //endregion
+    //region async await deferred
+
     //endregion
 
 }
