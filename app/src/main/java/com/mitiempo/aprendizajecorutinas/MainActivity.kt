@@ -3,7 +3,9 @@ package com.mitiempo.aprendizajecorutinas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.runBlocking
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +16,8 @@ class MainActivity : AppCompatActivity() {
 
         //blockingExample()
         //suspendExample()
-        suspendExample2()
+        //suspendExample2()
+        dispatcher()
 
 
     }
@@ -56,6 +59,23 @@ class MainActivity : AppCompatActivity() {
         Log.e("Mensaje", "Tarea 1" +" " +Thread.currentThread().name)
         delayCorutine("Tarea 2")
         Log.e("Mensaje", "Tarea 3" +" " +Thread.currentThread().name)
+    }
+    //endregion
+    //region dispacher
+    fun dispatcher(){
+        //default
+        runBlocking { Log.e("Mensaje","Hilo en el que se ejecuta 1: ${Thread.currentThread().name}") }
+        //no nos interesa el hilo en el que se ejecute
+        runBlocking(Dispatchers.Unconfined) { Log.e("Mensaje","Hilo en el que se ejecuta 2: ${Thread.currentThread().name}") }
+
+        runBlocking(Dispatchers.Default){ Log.e("Mensaje","Hilo en el que se ejecuta 3: ${Thread.currentThread().name}") }
+        //operacion i/o webservice db etc
+        runBlocking(Dispatchers.IO){ Log.e("Mensaje","Hilo en el que se ejecuta 4: ${Thread.currentThread().name}") }
+        //hilo independiente
+        runBlocking(newSingleThreadContext("MiHilo")){ Log.e("Mensaje","Hilo en el que se ejecuta 5: ${Thread.currentThread().name}") }
+
+        //este solo funciona en android, usa el hilo de principal de la aplicacion
+        runBlocking(Dispatchers.Main){ Log.e("Mensaje","Hilo en el que se ejecuta 5: ${Thread.currentThread().name}") }
     }
     //endregion
 }
