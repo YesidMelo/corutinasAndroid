@@ -27,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         //asyncAndAwaitDeferred()
         "tiempo que demoro la operacion : ${measureTime { asyncAndAwait() }}".imprimirEnConsola()
         "tiempo que demoro la operacion : ${measureTime { asyncAndAwaitDeferred() }}".imprimirEnConsola()
+        "tiempo que demoro la operacion : ${measureTime { withContextIO() }}".imprimirEnConsola()
 
     }
 
@@ -144,8 +145,12 @@ class MainActivity : AppCompatActivity() {
         "Resultado : ${numero1.await() + numero2.await()}".imprimirEnConsola()
     }
     //endregion
-    //region async await deferred
-
+    //region withContext
+    fun withContextIO() = runBlocking {
+        val numero1 = withContext(Dispatchers.IO){ calculateHard() }
+        val numero2 = withContext(Dispatchers.IO){ calculateHard() }
+        "resultado (withContextIO) : ${numero1 + numero2}".imprimirEnConsola()
+    }
     //endregion
 
 }
