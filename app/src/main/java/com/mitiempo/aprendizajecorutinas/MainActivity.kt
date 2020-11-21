@@ -4,12 +4,15 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.coroutines.*
+import kotlin.time.ExperimentalTime
+import kotlin.time.measureTime
 
 class MainActivity : AppCompatActivity() {
     fun String.imprimirEnConsola(){
         Log.e("Mensaje",this);
     }
 
+    @ExperimentalTime
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -21,8 +24,9 @@ class MainActivity : AppCompatActivity() {
         //launch()
         //exampleJob()
         //asyncAndAwait()
-        asyncAndAwaitDeferred()
-
+        //asyncAndAwaitDeferred()
+        "tiempo que demoro la operacion : ${measureTime { asyncAndAwait() }}".imprimirEnConsola()
+        "tiempo que demoro la operacion : ${measureTime { asyncAndAwaitDeferred() }}".imprimirEnConsola()
 
     }
 
@@ -119,11 +123,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun asyncAndAwait()= runBlocking {
-        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+//        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         val numero1 = async { calculateHard() }.await()
-        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+//        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         val numero2 = async { calculateHard() }.await()
-        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+//        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         (numero1 + numero2).toString().imprimirEnConsola()
     }
     //endregion
@@ -132,11 +136,11 @@ class MainActivity : AppCompatActivity() {
      */
     //region defered -> esta operacion esta ejecutando en paralelo
     fun asyncAndAwaitDeferred()= runBlocking {
-        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+//        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         val numero1: Deferred<Int> = async { calculateHard() }
-        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+//        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         val numero2: Deferred<Int> = async { calculateHard() }
-        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
+//        " timepo de inicio : ${System.currentTimeMillis()}".imprimirEnConsola()
         "Resultado : ${numero1.await() + numero2.await()}".imprimirEnConsola()
     }
     //endregion
