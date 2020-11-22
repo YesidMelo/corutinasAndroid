@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.*
 import kotlin.system.measureTimeMillis
 
 class EjemploFlow : AppCompatActivity() {
-    private val numero_iteraciones = 3
+    private val numero_iteraciones = 50
     fun String.imprimirEnConsola(){
         Log.e("Mensaje",this);
     }
@@ -198,7 +198,19 @@ class EjemploFlow : AppCompatActivity() {
             "tiempo  con buffer: $time".imprimirEnConsola()
         }
         */
-
+        //operador conflate
+        runBlocking {
+            val time = measureTimeMillis {
+                firstFlowBuffer()
+                        .conflate()//conflate nos muestra siempre los ultimos valores saltandose algo en el proceso. este se puede usar siempre y cuando no necesitemos la pila de informacion previa
+                        .collect {
+                            value ->
+                            delay(300)
+                            "value : $value".imprimirEnConsola()
+                        }
+            }
+            "tiempo  con buffer: $time".imprimirEnConsola()
+        }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
     //region ejemplo listar
