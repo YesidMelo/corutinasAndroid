@@ -62,8 +62,22 @@ class EjemploFlow : AppCompatActivity() {
             secondFlow().collect { v -> "valor : $v".imprimirEnConsola() }
         }
          */
+        /*
         runBlocking {
             thirdFlow().collect { v -> " valor : $v".imprimirEnConsola() }
+        }
+         */
+        runBlocking {
+            (1 .. numero_iteraciones)
+                    .asFlow()
+                    .map {
+                        request ->
+                        performRequest(request)
+                    }
+                    .collect {
+                        response ->
+                        "imprime respuesta $response".imprimirEnConsola()
+                    }
         }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
@@ -111,6 +125,12 @@ class EjemploFlow : AppCompatActivity() {
     //region tercera forma de crear un flow
     fun thirdFlow() : Flow<Int>{
         return ( 1 .. numero_iteraciones).asFlow()
+    }
+    //endregion
+    //region operador Map
+    suspend fun performRequest(req : Int) : String{
+        delay(1_000)
+        return "response $req"
     }
     //endregion
 }
