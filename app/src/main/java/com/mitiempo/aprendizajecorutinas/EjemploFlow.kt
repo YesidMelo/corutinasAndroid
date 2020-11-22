@@ -230,7 +230,7 @@ class EjemploFlow : AppCompatActivity() {
         }
         */
         //operador zip : combina dos flows para producir un nuevo resultado
-
+        /*
         val nums = (1 .. numero_iteraciones).asFlow()
         val strs = flowOf("uno","dos","tres")
         runBlocking {
@@ -240,6 +240,35 @@ class EjemploFlow : AppCompatActivity() {
             }.collect {
                 it.imprimirEnConsola()
             }
+        }
+         */
+        //flattening flow : fujo de flujos (Flow<Flow<String>>)
+        /*
+        runBlocking {
+            var ejemplo = (1 .. numero_iteraciones)
+                    .asFlow()
+                    .map {
+                        requestFlow(it)
+                    }
+        }
+        */
+
+        //forma uno de ejecutar un flattening flow
+        //termina primero el interno y luego ejecuta el externo
+        //FlatMapConcat
+        runBlocking {
+            val starTime = System.currentTimeMillis()
+
+            var ejemplo = (1 .. numero_iteraciones)
+                    .asFlow()
+                    .onEach { delay(100) }
+                    .flatMapConcat {
+                        requestFlow(it)
+                    }
+                    .collect {
+                        value ->
+                        "$value at ${System.currentTimeMillis() - starTime} as from start".imprimirEnConsola()
+                    }
         }
 
     }
@@ -309,6 +338,13 @@ class EjemploFlow : AppCompatActivity() {
             delay(1_00)
             emit(i) // esta linea es la que devolvera un valor en esta funcion de corutina
         }
+    }
+    //endregion
+    //region flattening flow
+    fun requestFlow(i : Int) : Flow<String> = flow{
+        emit("$i : First")
+        delay(500)
+        emit("$i : Second")
     }
     //endregion
 }
