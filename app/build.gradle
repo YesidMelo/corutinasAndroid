@@ -45,4 +45,8 @@ dependencies {
 
     //CORUTINAS KITLIN
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9'
+
+    //Dagger
+    implementation "com.google.dagger:dagger:2.27"
+    annotationProcessor "com.google.dagger:dagger-compiler:2.27"
 }
