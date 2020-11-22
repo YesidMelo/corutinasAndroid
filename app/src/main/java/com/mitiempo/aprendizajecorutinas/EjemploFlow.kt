@@ -11,9 +11,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class EjemploFlow : AppCompatActivity() {
+    private val numero_iteraciones = 3
     fun String.imprimirEnConsola(){
         Log.e("Mensaje",this);
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejemplo_flow)
@@ -23,10 +25,11 @@ class EjemploFlow : AppCompatActivity() {
             runAsynchronous().forEach { i -> " $i".imprimirEnConsola() }
         }
          */
+        /*
         runBlocking {
 
             launch {
-                for (j in 1 .. 40){
+                for (j in 1 .. numero_iteraciones){
                     "no estoy bloqueado $j".imprimirEnConsola()
                     delay(1_000)
                 }
@@ -37,6 +40,18 @@ class EjemploFlow : AppCompatActivity() {
                 value -> "valor : $value".imprimirEnConsola()
             }
         }
+        */
+
+        //flow cold
+        runBlocking {
+            "llamand flow ...".imprimirEnConsola()
+            val flow : Flow<Int> = firstFlow()
+            "collect ...".imprimirEnConsola()
+            flow.collect { value -> "numero generado : $value".imprimirEnConsola() }
+            "collect again ...".imprimirEnConsola()
+            flow.collect { value -> "numero generado : $value".imprimirEnConsola() }
+        }
+
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
     //region ejemplo listar
@@ -48,7 +63,7 @@ class EjemploFlow : AppCompatActivity() {
     //endregion
     //region secuencia
     fun secuencia() : Sequence<Int> = sequence{
-        for ( i  in 1 .. 3 ){
+        for ( i  in 1 .. numero_iteraciones ){
             Thread.sleep(1_000)
             yield(i)
         }
@@ -69,7 +84,7 @@ class EjemploFlow : AppCompatActivity() {
      */
     //region primer flow
     fun firstFlow() : Flow<Int> = flow{
-        for (i in 1 .. 40){
+        for (i in 1 .. numero_iteraciones){
             delay(1_000)
             emit(i) // esta linea es la que devolvera un valor en esta funcion de corutina
         }
