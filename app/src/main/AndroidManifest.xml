@@ -3,14 +3,14 @@
     package="com.mitiempo.aprendizajecorutinas">
 
     <application
-        android:name=".Dagger.external.app.BaseApp"
+        android:name="com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.external.app.BaseApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AprendizajeCorutinas">
-        <activity android:name=".Dagger.external.Activities.MainActivityDagger">
+        <activity android:name="com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.external.Activities.MainActivityDagger">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

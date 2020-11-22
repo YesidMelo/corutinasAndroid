@@ -1,9 +1,9 @@
-package com.mitiempo.aprendizajecorutinas.Dagger.external.app
+package com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.external.app
 
 import android.app.Application
 import android.util.Log
-import com.mitiempo.aprendizajecorutinas.Dagger.DI.DaggerMotorComponent
-import com.mitiempo.aprendizajecorutinas.Dagger.DI.MotorComponent
+import com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.DI.DaggerMotorComponent
+import com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.DI.MotorComponent
 
 /**
  * Esta clase construye todos los modulos al principio (En tiempo de ejecucion)

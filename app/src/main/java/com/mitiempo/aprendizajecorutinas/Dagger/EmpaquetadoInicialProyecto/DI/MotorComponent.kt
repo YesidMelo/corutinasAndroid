@@ -1,6 +1,6 @@
-package com.mitiempo.aprendizajecorutinas.Dagger.DI
+package com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.DI
 
-import com.mitiempo.aprendizajecorutinas.Dagger.external.Activities.MainActivityDagger
+import com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.external.Activities.MainActivityDagger
 import dagger.Component
 import javax.inject.Singleton
 

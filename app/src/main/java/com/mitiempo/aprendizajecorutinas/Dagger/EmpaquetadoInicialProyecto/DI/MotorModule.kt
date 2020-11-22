@@ -1,7 +1,7 @@
-package com.mitiempo.aprendizajecorutinas.Dagger.DI
+package com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.DI
 
-import com.mitiempo.aprendizajecorutinas.Dagger.entidades.Coche
-import com.mitiempo.aprendizajecorutinas.Dagger.entidades.Motor
+import com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.entidades.Coche
+import com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.entidades.Motor
 import dagger.Module
 import dagger.Provides
 import javax.inject.Named

@@ -1,4 +1,4 @@
-package com.mitiempo.aprendizajecorutinas.Dagger.entidades
+package com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.entidades
 
 class Motor (private val tipoMotor : String) : BaseModel {
 

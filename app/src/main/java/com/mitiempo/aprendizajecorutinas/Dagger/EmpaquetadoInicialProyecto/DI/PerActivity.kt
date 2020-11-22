@@ -1,6 +1,5 @@
-package com.mitiempo.aprendizajecorutinas.Dagger.DI
+package com.mitiempo.aprendizajecorutinas.Dagger.EmpaquetadoInicialProyecto.DI
 
-import java.lang.annotation.RetentionPolicy
 import javax.inject.Scope
 
 @Retention(AnnotationRetention.RUNTIME)
