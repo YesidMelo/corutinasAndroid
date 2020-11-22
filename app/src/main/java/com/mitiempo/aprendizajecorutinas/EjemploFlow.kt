@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
+import kotlin.system.measureTimeMillis
 
 class EjemploFlow : AppCompatActivity() {
     private val numero_iteraciones = 3
@@ -150,6 +151,7 @@ class EjemploFlow : AppCompatActivity() {
             resultado.toString().imprimirEnConsola()
         }
         */
+        /*
         runBlocking {
             (1 .. numero_iteraciones * 2)
                     .asFlow()
@@ -165,6 +167,18 @@ class EjemploFlow : AppCompatActivity() {
                         i ->
                         "Collect $i".imprimirEnConsola()
                     }
+        }
+         */
+        //primer ejemplo buffer -> se demora mas o menos arto
+        runBlocking {
+            val time = measureTimeMillis {
+                firstFlowBuffer().collect {
+                    value ->
+                    delay(300)
+                    "value : $value".imprimirEnConsola()
+                }
+            }
+            "tiempo : $time".imprimirEnConsola()
         }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
@@ -218,6 +232,14 @@ class EjemploFlow : AppCompatActivity() {
     suspend fun performRequest(req : Int) : String{
         delay(1_000)
         return "response $req"
+    }
+    //endregion
+    //region buffer
+    fun firstFlowBuffer() : Flow<Int> = flow{
+        for (i in 1 .. numero_iteraciones){
+            delay(1_00)
+            emit(i) // esta linea es la que devolvera un valor en esta funcion de corutina
+        }
     }
     //endregion
 }
