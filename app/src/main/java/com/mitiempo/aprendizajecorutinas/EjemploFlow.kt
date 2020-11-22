@@ -67,6 +67,8 @@ class EjemploFlow : AppCompatActivity() {
             thirdFlow().collect { v -> " valor : $v".imprimirEnConsola() }
         }
          */
+        //operador map
+        /*
         runBlocking {
             (1 .. numero_iteraciones)
                     .asFlow()
@@ -77,6 +79,23 @@ class EjemploFlow : AppCompatActivity() {
                     .collect {
                         response ->
                         "imprime respuesta $response".imprimirEnConsola()
+                    }
+        }
+         */
+        //operador filter
+        runBlocking {
+            (1 .. numero_iteraciones)
+                    .asFlow()
+                    .filter { request ->
+                        return@filter request > 1
+                    }
+                    .map {
+                        request ->
+                        performRequest(request)
+                    }
+                    .collect {
+                        value ->
+                        "valor : $value".imprimirEnConsola()
                     }
         }
     }
