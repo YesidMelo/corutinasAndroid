@@ -16,6 +16,7 @@ class EjemploFlow : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejemplo_flow)
         //un flow es una lista (¿un mapa?) de objetos que se pueden tomar pero de forma asincrona para no bloquear el programa
+        //flow es secuencial
         /*
 //        show()
         runBlocking {
@@ -129,9 +130,41 @@ class EjemploFlow : AppCompatActivity() {
         }
          */
         //operador toList
+        /*
         runBlocking {
             val list : List<Int> =  (1 .. numero_iteraciones).asFlow().toList()
             list.toString().imprimirEnConsola()
+        }
+        */
+        /*
+        runBlocking {
+            val numero =  (1 .. numero_iteraciones).asFlow().first()
+            numero.toString().imprimirEnConsola()
+        }
+        */
+        /*
+        runBlocking {
+            val resultado = (1 .. numero_iteraciones)
+                    .asFlow()
+                    .reduce{a,b -> a+b} //investigar esto de momentos lo entiendo como una operacion recursiva
+            resultado.toString().imprimirEnConsola()
+        }
+        */
+        runBlocking {
+            (1 .. numero_iteraciones * 2)
+                    .asFlow()
+                    .filter {
+                        "numero filtrado : $it".imprimirEnConsola()
+                        return@filter it % 2 == 0
+                    }
+                    .map {
+                        "map $it".imprimirEnConsola()
+                        "String $it"
+                    }
+                    .collect {
+                        i ->
+                        "Collect $i".imprimirEnConsola()
+                    }
         }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
