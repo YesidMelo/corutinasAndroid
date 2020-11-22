@@ -1,11 +1,11 @@
-package com.mitiempo.aprendizajecorutinas
+package com.mitiempo.aprendizajecorutinas.Corutinas
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import com.mitiempo.aprendizajecorutinas.R
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
-import kotlin.system.measureTimeMillis
 
 class EjemploFlow : AppCompatActivity() {
     private val numero_iteraciones = 3
