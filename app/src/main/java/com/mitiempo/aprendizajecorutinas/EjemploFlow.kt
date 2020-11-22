@@ -254,8 +254,9 @@ class EjemploFlow : AppCompatActivity() {
         */
 
         //forma uno de ejecutar un flattening flow
-        //termina primero el interno y luego ejecuta el externo
+        //termina primero el interno y luego ejecuta el externo uno por uno
         //FlatMapConcat
+        /*
         runBlocking {
             val starTime = System.currentTimeMillis()
 
@@ -263,6 +264,24 @@ class EjemploFlow : AppCompatActivity() {
                     .asFlow()
                     .onEach { delay(100) }
                     .flatMapConcat {
+                        requestFlow(it)
+                    }
+                    .collect {
+                        value ->
+                        "$value at ${System.currentTimeMillis() - starTime} as from start".imprimirEnConsola()
+                    }
+        }
+         */
+        //forma dos de ejecutar un flattening flow
+        //se ejecuta en paralelo los flows internos
+        //FlatMapMerge
+        runBlocking {
+            val starTime = System.currentTimeMillis()
+
+            (1 .. numero_iteraciones)
+                    .asFlow()
+                    .onEach { delay(100) }
+                    .flatMapMerge {
                         requestFlow(it)
                     }
                     .collect {
