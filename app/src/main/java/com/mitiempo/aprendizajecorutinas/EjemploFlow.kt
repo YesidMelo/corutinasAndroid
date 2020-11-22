@@ -15,6 +15,7 @@ class EjemploFlow : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ejemplo_flow)
+        //un flow es una lista (¿un mapa?) de objetos que se pueden tomar pero de forma asincrona para no bloquear el programa
         /*
 //        show()
         runBlocking {
@@ -101,6 +102,7 @@ class EjemploFlow : AppCompatActivity() {
         }
          */
         //operador transform
+        /*
         runBlocking {
             (1 .. numero_iteraciones)
                     .asFlow()
@@ -113,6 +115,23 @@ class EjemploFlow : AppCompatActivity() {
                         response ->
                         "respuesta : $response".imprimirEnConsola()
                     }
+        }
+         */
+        /*
+        runBlocking {
+            (1 .. numero_iteraciones)
+                    .asFlow()
+                    .take(2)//indica un limite
+                    .collect {
+                        response ->
+                        "valor : $response".imprimirEnConsola()
+                    }
+        }
+         */
+        //operador toList
+        runBlocking {
+            val list : List<Int> =  (1 .. numero_iteraciones).asFlow().toList()
+            list.toString().imprimirEnConsola()
         }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
