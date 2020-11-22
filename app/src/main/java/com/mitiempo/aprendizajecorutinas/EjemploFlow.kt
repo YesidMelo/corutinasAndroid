@@ -4,10 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.*
 
 class EjemploFlow : AppCompatActivity() {
     private val numero_iteraciones = 3
@@ -60,8 +57,13 @@ class EjemploFlow : AppCompatActivity() {
             "Finalizado".imprimirEnConsola()
         }
          */
+        /*
         runBlocking {
             secondFlow().collect { v -> "valor : $v".imprimirEnConsola() }
+        }
+         */
+        runBlocking {
+            thirdFlow().collect { v -> " valor : $v".imprimirEnConsola() }
         }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
@@ -104,6 +106,11 @@ class EjemploFlow : AppCompatActivity() {
     //region segunda forma de construir un flow
     fun secondFlow() : Flow<Int> {
         return flowOf(1,2,3)
+    }
+    //endregion
+    //region tercera forma de crear un flow
+    fun thirdFlow() : Flow<Int>{
+        return ( 1 .. numero_iteraciones).asFlow()
     }
     //endregion
 }
