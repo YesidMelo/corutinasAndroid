@@ -8,6 +8,7 @@ import com.mitiempo.aprendizajecorutinas.Dagger.entidades.Motor
 import com.mitiempo.aprendizajecorutinas.Dagger.external.app.BaseApp
 import com.mitiempo.aprendizajecorutinas.R
 import javax.inject.Inject
+import javax.inject.Named
 
 class MainActivityDagger : AppCompatActivity() {
 
@@ -16,6 +17,7 @@ class MainActivityDagger : AppCompatActivity() {
     }
 
     @Inject
+    @Named("Diesel")
     lateinit var motorDiesel : Motor
 
     @Inject
