@@ -83,6 +83,7 @@ class EjemploFlow : AppCompatActivity() {
         }
          */
         //operador filter
+        /*
         runBlocking {
             (1 .. numero_iteraciones)
                     .asFlow()
@@ -96,6 +97,21 @@ class EjemploFlow : AppCompatActivity() {
                     .collect {
                         value ->
                         "valor : $value".imprimirEnConsola()
+                    }
+        }
+         */
+        //operador transform
+        runBlocking {
+            (1 .. numero_iteraciones)
+                    .asFlow()
+                    .transform {
+                        request ->
+                        emit("haciendo respuesta : $request")//requerde que el emit informa al collect la respuesta
+                        emit(performRequest(request))
+                    }
+                    .collect {
+                        response ->
+                        "respuesta : $response".imprimirEnConsola()
                     }
         }
     }
