@@ -169,7 +169,8 @@ class EjemploFlow : AppCompatActivity() {
                     }
         }
          */
-        //primer ejemplo buffer -> se demora mas o menos arto
+        //primer ejemplo buffer (sin uso de buffer)-> se demora mas o menos arto
+        /*
         runBlocking {
             val time = measureTimeMillis {
                 firstFlowBuffer().collect {
@@ -180,6 +181,24 @@ class EjemploFlow : AppCompatActivity() {
             }
             "tiempo : $time".imprimirEnConsola()
         }
+        */
+
+        //uso de buffer
+        /*
+        runBlocking {
+            val time = measureTimeMillis {
+                firstFlowBuffer()
+                        .buffer()
+                        .collect {
+                            value ->
+                            delay(300)
+                            "value : $value".imprimirEnConsola()
+                        }
+            }
+            "tiempo  con buffer: $time".imprimirEnConsola()
+        }
+        */
+
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
     //region ejemplo listar
