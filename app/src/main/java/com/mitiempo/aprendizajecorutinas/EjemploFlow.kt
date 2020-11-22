@@ -3,12 +3,10 @@ package com.mitiempo.aprendizajecorutinas
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 class EjemploFlow : AppCompatActivity() {
     private val numero_iteraciones = 3
@@ -41,7 +39,7 @@ class EjemploFlow : AppCompatActivity() {
             }
         }
         */
-
+        /*
         //flow cold
         runBlocking {
             "llamand flow ...".imprimirEnConsola()
@@ -51,7 +49,14 @@ class EjemploFlow : AppCompatActivity() {
             "collect again ...".imprimirEnConsola()
             flow.collect { value -> "numero generado : $value".imprimirEnConsola() }
         }
-
+         */
+        //timeout en los flow
+        runBlocking {
+           withTimeoutOrNull(2500){
+               firstFlow().collect { valor -> "valor : $valor".imprimirEnConsola() }
+           }
+            "Finalizado".imprimirEnConsola()
+        }
     }
     //region introduccion (se bloquea la pantalla por 3 segundos la idea es realizar operaciones de manera asincrona)
     //region ejemplo listar
