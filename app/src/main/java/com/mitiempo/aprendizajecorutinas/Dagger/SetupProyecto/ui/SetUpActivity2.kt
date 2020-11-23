@@ -16,7 +16,7 @@ class SetUpActivity2 : AppCompatActivity() {
     }
 
     @Inject
-    @Named("Diesel")
+    @Named("MotorDiesel")
     lateinit var motor : Motor
 
     override fun onCreate(savedInstanceState: Bundle?) {

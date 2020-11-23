@@ -1,6 +1,18 @@
 package com.mitiempo.aprendizajecorutinas.Dagger.SetupProyecto
 
-class Motor (private val typeMotor : String) : BaseModel {
+import javax.inject.Inject
 
-    fun getTypeMotor() : String { return typeMotor }
+class Motor: BaseModel {
+    lateinit var type : String
+
+    @Inject
+    constructor(){
+        type = "Gasoline"
+    }
+
+    constructor (type: String){
+        this.type = type
+    }
+
+    fun getTypeMotor() : String? { return type }
 }
