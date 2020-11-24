@@ -20,9 +20,5 @@ class MotorModule {
     @Provides
     fun provideMotorGasoline() : Motor = Motor("Gasoline")
 
-    @Named("Default")
-    @Provides
-    fun provideMotor() : Motor =  Motor("Gasoline")
-
 
 }

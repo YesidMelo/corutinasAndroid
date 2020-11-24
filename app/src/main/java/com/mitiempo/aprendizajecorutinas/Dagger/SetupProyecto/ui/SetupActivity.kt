@@ -9,6 +9,7 @@ import com.mitiempo.aprendizajecorutinas.Dagger.SetupProyecto.Car
 import com.mitiempo.aprendizajecorutinas.Dagger.SetupProyecto.di.BaseApplicationSetupDagger
 import com.mitiempo.aprendizajecorutinas.R
 import javax.inject.Inject
+import javax.inject.Named
 
 
 class SetupActivity : AppCompatActivity() {
@@ -21,8 +22,9 @@ class SetupActivity : AppCompatActivity() {
     lateinit  var boton2 : Button
 
 
+    @Named("diesel_car")
     @Inject
-    lateinit var car : Car
+    lateinit var carElectric : Car
 
 
 
@@ -34,7 +36,7 @@ class SetupActivity : AppCompatActivity() {
         ponerEscuchadores()
         startInjections()
 
-        "el coche fabricador es : ${car.getCar()}"
+        "el coche fabricador es : ${carElectric.getCar()}".imprimirEnConsola()
     }
 
     private fun buscarElementosDeVista() {
