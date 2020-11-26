@@ -10,7 +10,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AprendizajeCorutinas">
-        <activity android:name=".Dagger.SetupProyecto.ui.SetUpActivity3"></activity>
+        <activity android:name=".Dagger.ProyectoReal.ui.LoginActivity"></activity>
+        <activity android:name=".Dagger.SetupProyecto.ui.SetUpActivity3" />
         <activity android:name=".Dagger.SetupProyecto.ui.SetUpActivity2" />
         <activity android:name=".Dagger.SetupProyecto.ui.SetupActivity">
             <intent-filter>
