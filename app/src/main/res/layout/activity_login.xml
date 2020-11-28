@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/gradiente"
-        tools:context=".Dagger.ProyectoReal.ui.Login.LoginActivity">
+        tools:context=".dagger.proyectoReal.ui.Login.LoginActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/image_view_app"

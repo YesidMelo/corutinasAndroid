@@ -3,33 +3,31 @@
     package="com.mitiempo.aprendizajecorutinas">
 
     <application
-        android:name=".Dagger.ProyectoReal.di.BaseAppLogin"
+        android:name=".dagger.proyectoReal.di.BaseAppLogin"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AprendizajeCorutinas">
-        <!--region Dagger ejemplo practico-->
-        <activity android:name=".Dagger.ProyectoReal.ui.Profile.ProfileActivity"/>
-        <activity android:name=".Dagger.ProyectoReal.ui.Login.LoginActivity">
+        <activity android:name=".dagger.proyectoReal.ui.WebService.WebServiceActivity"></activity>
+        <!-- region Dagger ejemplo practico -->
+        <activity android:name=".dagger.proyectoReal.ui.Profile.ProfileActivity" />
+        <activity android:name=".dagger.proyectoReal.ui.Login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!--endregion-->
-        <!--region practicas dagger-->
-        <activity android:name=".Dagger.SetupProyecto.ui.SetUpActivity3" />
-        <activity android:name=".Dagger.SetupProyecto.ui.SetUpActivity2" />
-        <activity android:name=".Dagger.SetupProyecto.ui.SetupActivity"/>
-        <activity android:name=".Dagger.EmpaquetadoInicialProyecto.external.Activities.MainActivityDagger"/>
-        <!--endregion-->
-        <!--region corutinas-->
-        <activity android:name=".Corutinas.EjemploFlow"/>
-        <activity android:name=".Corutinas.MainActivity"/>
-        <!--endregion-->
+        </activity> <!-- endregion -->
+        <!-- region practicas dagger -->
+        <activity android:name=".dagger.SetupProyecto.ui.SetUpActivity3" />
+        <activity android:name=".dagger.SetupProyecto.ui.SetUpActivity2" />
+        <activity android:name=".dagger.SetupProyecto.ui.SetupActivity" />
+        <activity android:name=".dagger.EmpaquetadoInicialProyecto.external.Activities.MainActivityDagger" /> <!-- endregion -->
+        <!-- region corutinas -->
+        <activity android:name=".corutinas.EjemploFlow" />
+        <activity android:name=".corutinas.MainActivity" />
     </application>
 
 </manifest>
