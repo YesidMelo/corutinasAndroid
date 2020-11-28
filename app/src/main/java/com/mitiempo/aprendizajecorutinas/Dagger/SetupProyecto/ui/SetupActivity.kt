@@ -54,6 +54,6 @@ class SetupActivity : AppCompatActivity() {
     }
 
     private fun startInjections() {
-        (application as BaseApplicationSetupDagger).carComponent.inject(this)
+//        (application as BaseApplicationSetupDagger).carComponent.inject(this)
     }
 }
