@@ -15,4 +15,10 @@ class ProfilePresenter(private var user: User) : Profile.Presenter{
         this.user.userName = user.userName
         this.user.edad = user.edad
     }
+
+    override fun logout() {
+        user.userName = ""
+        user.edad=""
+        view.logout()
+    }
 }
